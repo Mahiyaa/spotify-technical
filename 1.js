@@ -13,21 +13,19 @@ return newArr.join('')
 
 //Final Solution
 function sortByStrings(s, t) {
-  let sortedArr = [];
-  let sArr = s.split('')
-  let tArr = t.split('')
+  let sortedArr = '';
 
   let i = 0;
-  while (i < tArr.length) {
-    for (let j = 0; j < sArr.length; j++) {
-      if (sArr[j] === tArr[i]) {
-        sortedArr.push(sArr[j])
+  while (i < t.length) {
+    for (let j = 0; j < s.length; j++) {
+      if (s[j] === t[i]) {
+        sortedArr += s[j]
       }
     }
     i++
   }
 
-  return sortedArr.join('')
+  return sortedArr
 }
 
 

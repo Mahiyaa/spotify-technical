@@ -6,3 +6,16 @@ The encoding rule is: k[encoded_string], where the encoded_string inside the squ
 For s = "4[ab]", the output should be decodeString(s) = "abababab"
 For s = "2[b3[a]]", the output should be decodeString(s) = "baaabaaa"
 */
+
+/*
+need regex..
+need recursion or use a helper function
+iterate through the string, look for opening bracket, find corresponding closing bracket
+call decodeString on inner contents
+baseCase -> get inner bracket string, find integer outside that bracket, convert it to a number, create a new array of that value, call decode string on that outer value..
+
+*/
+
+function decodeString(s) {
+
+}
