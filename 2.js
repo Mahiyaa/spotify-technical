@@ -8,14 +8,45 @@ For s = "2[b3[a]]", the output should be decodeString(s) = "baaabaaa"
 */
 
 /*
+Possible Approach:
 need regex..
 need recursion or use a helper function
 iterate through the string, look for opening bracket, find corresponding closing bracket
 call decodeString on inner contents
-baseCase -> get inner bracket string, find integer outside that bracket, convert it to a number, create a new array of that value, call decode string on that outer value..
-
+baseCase -> when there are no more brackets in the string
 */
 
-function decodeString(s) {
 
+function decodeString(s) {
+  let findNumMatch = /\d/;
+  let newStr = '';
+  let repeatNum = 0;
+  let startSlice = 0;
+  let endSlice = 0;
+
+  //baseCase
+  if (s.indexOf('[') === -1) {
+    newStr = s.slice(0, s.length-1) //remove the last closing bracket
+    return newStr
+  }
+  else {
+    for (let i = 0; i < s.length; i++) {
+      if (findNumMatch.test(s[i])) {
+        repeatNum = Number(s[i])
+      }
+      if (s[i] === '[') {
+        startSlice = i+1
+      }
+      if (s[i] === ']') {
+        endSlice = i
+        break;
+      }
+    }
+
+    for (let j = 0; j < repeatNum; j++) {
+      let strRepeat = s.slice(startSlice, endSlice)
+      newStr += strRepeat
+    }
+    return decodeString(s.slice(0, s.lastIndexOf(repeatNum)) + newStr + s.slice(s.length-1))
+  }
 }
