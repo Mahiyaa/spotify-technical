@@ -11,3 +11,28 @@ Example: for amount=4 (4¢) and denominations=[1,2,3] (1¢, 2¢ and 3¢), your p
 2¢, 2¢
 
 */
+
+/*
+same as changePossibilities(targetSum, arrOfNums) -> count how many different ways the nums can result in targetSum
+return count
+look up dynamic programming
+there must be a recursive way
+*/
+
+
+function changePossibilities(totalAmt, coins) {
+  let changePossArr = [];
+  for(let i = 0; i <=totalAmt; i++) {
+    changePossArr[i] = 0  //initialize 0 value for each spot [0,0,0,0]
+  }
+
+  changePossArr[0] = 1;
+  for(let j = 0; j < coins.length; j++) {
+    for (let k = 1; k < changePossArr.length; k++) {
+      if (k >= coins[j]) {
+        changePossArr[k] += changePossArr[k - coins[j]]
+      }
+    }
+  }
+  return changePossArr[totalAmt]
+}
